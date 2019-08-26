@@ -38,7 +38,7 @@ passport.prototype.findDestination = function(id) {
   for(let i=0; i<this.destinations.length; i++) {
     if(this.destinations[i]) {
       if(this.destinations[i].id == id) {
-        output = this.destinations[i].getInfo();
+        output = this.destinations[i];
       }
     }
   }
@@ -63,7 +63,8 @@ $(document).ready(function() {
     $(".form").trigger("reset");
 
     $("#places li").click(function() {
-      this.append(": " + myPassport.findDestination(this.id));
+      $(this).text(myPassport.findDestination(this.id).name);
+      this.append(": " + myPassport.findDestination(this.id).getInfo());
     });
   });
 });
